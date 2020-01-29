@@ -40,14 +40,17 @@ cache:
     - /C/tools/msys64
 
 script:
-  - export KITCHEN_YAML=.kitchen.docker.yml
+  - taskkill -IM "gpg-agent.exe" -F
+  - export KITCHEN_LOCAL_YAML=.kitchen.proxy.yml
   - ruby -v
   - gem install bundler
   - bundle install
   # - bundle exec docker version
   - bundle exec kitchen --version
   # - bundle exec rake spec
+  - bundle exec kitchen list
   - bundle exec kitchen test -d always
+    # - bundle exec kitchen test -d always
 
 # script:
   # # - taskkill -IM "gpg-agent.exe" -F
