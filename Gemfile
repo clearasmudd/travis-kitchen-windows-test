@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 
 group :integration do
   gem 'test-kitchen', '~> 1.2'
-  # gem "kitchen-inspec"
+  gem "kitchen-inspec"
   gem 'kitchen-salt', '>= 0.6.0'
   # gem 'safe_yaml'
   # gem 'train'

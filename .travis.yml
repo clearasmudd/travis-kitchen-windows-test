@@ -40,7 +40,7 @@ cache:
     - /C/tools/msys64
 
 script:
-  - taskkill -IM "gpg-agent.exe" -F
+  # - taskkill -IM "gpg-agent.exe" -F
   - export KITCHEN_LOCAL_YAML=.kitchen.proxy.yml
   - ruby -v
   - gem install bundler
