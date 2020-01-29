@@ -7,9 +7,9 @@ source 'https://rubygems.org'
 # gem 'berkshelf', '~> 4.0'
 
 group :integration do
-  gem 'test-kitchen', '~> 1.2'
+  gem 'test-kitchen'
   gem "kitchen-inspec"
-  gem 'kitchen-salt', '>= 0.6.0'
+  gem 'kitchen-salt'
   # gem 'safe_yaml'
   # gem 'train'
 end
