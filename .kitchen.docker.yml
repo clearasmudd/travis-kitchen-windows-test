@@ -1,8 +1,13 @@
 ---
+# driver:
+#   name: docker
+#   env_variables:
+#     TEST_KEY: TEST_VALUE
+# ---
 driver:
-  name: docker
-  env_variables:
-    TEST_KEY: TEST_VALUE
+  name: proxy
+  host: localhost
+  reset_command: "echo hello"
 
 provisioner:
   name: salt_solo
