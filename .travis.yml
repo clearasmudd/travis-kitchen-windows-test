@@ -13,7 +13,7 @@ script:
   - bundle install
   - bundle exec docker version
   - bundle exec kitchen --version
-  - bundle exec rake spec
+  # - bundle exec rake spec
   - bundle exec kitchen test -d always
 
 # script:
