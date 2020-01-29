@@ -1,9 +1,9 @@
 
 os: windows
 language: ruby
-rvm:
- - 2.2
- - jruby
+# rvm:
+#  - 2.6.5
+
 services: docker
 sudo: true
 env:
