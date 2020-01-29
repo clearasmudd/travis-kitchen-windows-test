@@ -1,0 +1,11 @@
+---
+driver:
+  name: docker
+  env_variables:
+    TEST_KEY: TEST_VALUE
+    
+platforms:
+  - name: windows
+    driver_config:
+      image: mcr.microsoft.com/windows/servercore:1803
+      platform: windows

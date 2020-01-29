@@ -3,9 +3,27 @@ os: windows
 language: bash
 services: docker
 
+install:
+  - choco install vim
+
 script:
-  - docker version
-  - docker images
-  - docker info
-  # - docker run mcr.microsoft.com/windows/nanoserver:1803 ipconfig
-  - docker run mcr.microsoft.com/windows/servercore:1803 ipconfig
+  - travis_retry bundle exec rake integration:docker
+
+# script:
+  # # - taskkill -IM "gpg-agent.exe" -F
+  # # - powershell -ExecutionPolicy Bypass -NoLogo -File docker.ps1
+  # - export KITCHEN_YAML=.kitchen.docker.yml
+  # - ruby -v
+  # - gem install bundler
+  # - bundle install
+  # - bundle exec docker version
+  # - bundle exec kitchen --version
+  # - bundle exec rake spec
+  # - bundle exec kitchen test -d always
+
+# script:
+#   - docker version
+#   - docker images
+#   - docker info
+#   # - docker run mcr.microsoft.com/windows/nanoserver:1803 ipconfig
+#   - docker run mcr.microsoft.com/windows/servercore:1803 ipconfig

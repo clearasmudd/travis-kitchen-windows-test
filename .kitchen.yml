@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: salt_solo
+  formula: filebeat-formula
+  dependencies:
+      - name: windows
+        path: ./test/windows-formula
+
+platforms:
+  # Windows 10, version 1903 (OS Build: 18362.592)
+  - name: windows-10-1903
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2020.01.15
+
+suites:
+  - name: py3
+    provisioner:
+      salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 3"
