@@ -2,7 +2,6 @@
 # vi: set ft=ruby :
 
 source 'https://rubygems.org'
-gemspec
 
 gem 'rake'
 # gem 'berkshelf', '~> 4.0'
