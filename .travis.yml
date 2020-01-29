@@ -67,7 +67,7 @@ script:
   # - export KITCHEN_LOCAL_YAML=.kitchen.proxy.yml
   - ruby -v
   # - gem install bundler
-  - bundle install
+  - bundle install || bundle install || bundle install
   # - bundle exec docker version
   - bundle exec kitchen --version
   # - bundle exec rake spec
