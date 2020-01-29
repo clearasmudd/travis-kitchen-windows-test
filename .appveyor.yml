@@ -1,4 +1,5 @@
 # version format
+# https://github.com/chef-cookbooks/windows/blob/master/appveyor.yml
 version: 1.0.{build}
 
 environment:
