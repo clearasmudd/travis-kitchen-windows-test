@@ -8,15 +8,15 @@ provisioner:
   salt_install: bootstrap
   formula: windows
   require_chef: false
-  init_environment: |
-    Clear-Host
-    # write-host "RUNNING ME NOW"
-    # if ( Test-Path -Path $env:TEMP\..\kitchen\ -PathType Container ) { Remove-Item "$env:TEMP\..\kitchen\" -Recurse -Force }
-    $AddedLocation ="c:\salt"
-    $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
-    $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-    $NewPath= $OldPath + ’;’ + $AddedLocation
-    Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
+  # init_environment: |
+  #   Clear-Host
+  #   # write-host "RUNNING ME NOW"
+  #   # if ( Test-Path -Path $env:TEMP\..\kitchen\ -PathType Container ) { Remove-Item "$env:TEMP\..\kitchen\" -Recurse -Force }
+  #   $AddedLocation ="c:\salt"
+  #   $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
+  #   $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
+  #   $NewPath= $OldPath + ’;’ + $AddedLocation
+  #   Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
   state_top:
     base:
       '*':
