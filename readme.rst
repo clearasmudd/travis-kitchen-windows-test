@@ -1,8 +1,8 @@
 .. _readme:
 
-####################
-windows-formula
-####################
+###########################
+travis-kitchen-windows-test
+###########################
 
 |img_appveyor|
 
