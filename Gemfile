@@ -2,12 +2,14 @@
 # vi: set ft=ruby :
 
 source 'https://rubygems.org'
+gemspec
 
 gem 'rake'
 # gem 'berkshelf', '~> 4.0'
 
 group :integration do
   gem 'test-kitchen', '~> 1.2'
+  gem "kitchen-inspec"
 end
 
 group :vagrant do
