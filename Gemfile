@@ -1,8 +1,8 @@
 # Gemfile
 
-group :integration do
-  gem 'test-kitchen', '~> 1.2'
-end
+# group :integration do
+#   gem 'test-kitchen', '~> 1.2'
+# end
 
 group :vagrant do
   gem 'vagrant-wrapper', '~> 2.0'

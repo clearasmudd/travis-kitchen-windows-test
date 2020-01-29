@@ -7,7 +7,14 @@ install:
   - choco install vim
 
 script:
-  - travis_retry bundle exec rake integration:docker
+  - export KITCHEN_YAML=.kitchen.docker.yml
+  - ruby -v
+  - gem install bundler
+  - bundle install
+  - bundle exec docker version
+  - bundle exec kitchen --version
+  - bundle exec rake spec
+  - bundle exec kitchen test -d always
 
 # script:
   # # - taskkill -IM "gpg-agent.exe" -F
