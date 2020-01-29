@@ -1,0 +1,49 @@
+I, [2020-01-29T14:31:22.589963 #4377]  INFO -- py3-windows-10-1903: -----> Converging <py3-windows-10-1903>...
+I, [2020-01-29T14:31:22.591991 #4377]  INFO -- py3-windows-10-1903: Preparing files for transfer
+I, [2020-01-29T14:31:22.592485 #4377]  INFO -- py3-windows-10-1903: Preparing salt-minion
+I, [2020-01-29T14:31:22.596408 #4377]  INFO -- py3-windows-10-1903: Preparing pillars into /srv/pillar
+I, [2020-01-29T14:31:22.596824 #4377]  INFO -- py3-windows-10-1903: Preparing formula: windows from /mnt/c/vagrant/github/travis-kitchen-windows-test
+I, [2020-01-29T14:31:22.604380 #4377]  INFO -- py3-windows-10-1903: Preparing state_top
+I, [2020-01-29T14:31:22.606596 #4377]  INFO -- py3-windows-10-1903: Preparing scripts into /etc/salt/scripts
+I, [2020-01-29T14:31:29.017865 #4377]  INFO -- py3-windows-10-1903: You asked for latest and you have 2019.2.3 installed, sweet!
+I, [2020-01-29T14:31:29.681881 #4377]  INFO -- py3-windows-10-1903: 
+I, [2020-01-29T14:31:29.682583 #4377]  INFO -- py3-windows-10-1903: 
+I, [2020-01-29T14:31:29.683180 #4377]  INFO -- py3-windows-10-1903:     Directory: C:\Users\vagrant\AppData\Local\Temp
+I, [2020-01-29T14:31:29.683817 #4377]  INFO -- py3-windows-10-1903: 
+I, [2020-01-29T14:31:29.684379 #4377]  INFO -- py3-windows-10-1903: 
+I, [2020-01-29T14:31:29.685046 #4377]  INFO -- py3-windows-10-1903: Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
+I, [2020-01-29T14:31:29.685901 #4377]  INFO -- py3-windows-10-1903: ----                -------------         ------ ----                                                                                                                                                                                                    
+I, [2020-01-29T14:31:29.686734 #4377]  INFO -- py3-windows-10-1903: d-----        1/29/2020  11:31 AM                kitchen                                                                                                                                                                                                 
+I, [2020-01-29T14:31:29.689628 #4377]  INFO -- py3-windows-10-1903: 
+I, [2020-01-29T14:31:29.690212 #4377]  INFO -- py3-windows-10-1903: 
+I, [2020-01-29T14:31:29.713719 #4377]  INFO -- py3-windows-10-1903: Transferring files to <py3-windows-10-1903>
+I, [2020-01-29T14:31:44.460110 #4377]  INFO -- py3-windows-10-1903: c:\salt\salt-call.bat : [WARNING ] The function "module.run" is using its deprecated version and will expire in version "Sodium".
+I, [2020-01-29T14:31:44.461012 #4377]  INFO -- py3-windows-10-1903: At line:1 char:131
+I, [2020-01-29T14:31:44.461674 #4377]  INFO -- py3-windows-10-1903: + ... alt\minion ;c:\salt\salt-call.bat --state-output=changes --config-dir ...
+I, [2020-01-29T14:31:44.462247 #4377]  INFO -- py3-windows-10-1903: +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+I, [2020-01-29T14:31:44.462760 #4377]  INFO -- py3-windows-10-1903:     + CategoryInfo          : NotSpecified: ([WARNING ] The ...rsion "Sodium".:String) [], RemoteException
+I, [2020-01-29T14:31:44.463247 #4377]  INFO -- py3-windows-10-1903:     + FullyQualifiedErrorId : NativeCommandError
+I, [2020-01-29T14:31:44.463738 #4377]  INFO -- py3-windows-10-1903:  
+I, [2020-01-29T14:31:44.464193 #4377]  INFO -- py3-windows-10-1903: local:
+I, [2020-01-29T14:31:44.464655 #4377]  INFO -- py3-windows-10-1903: ----------
+I, [2020-01-29T14:31:44.465106 #4377]  INFO -- py3-windows-10-1903:    ID: test ping
+I, [2020-01-29T14:31:44.465570 #4377]  INFO -- py3-windows-10-1903:     Function: module.run
+I, [2020-01-29T14:31:44.466024 #4377]  INFO -- py3-windows-10-1903:  Name: test.ping
+I, [2020-01-29T14:31:44.466556 #4377]  INFO -- py3-windows-10-1903:       Result: True
+I, [2020-01-29T14:31:44.467058 #4377]  INFO -- py3-windows-10-1903:      Comment: Module function test.ping executed
+I, [2020-01-29T14:31:44.467582 #4377]  INFO -- py3-windows-10-1903:      Started: 11:31:44.069142
+I, [2020-01-29T14:31:44.468126 #4377]  INFO -- py3-windows-10-1903:     Duration: 79.548 ms
+I, [2020-01-29T14:31:44.468597 #4377]  INFO -- py3-windows-10-1903:      Changes:   
+I, [2020-01-29T14:31:44.469050 #4377]  INFO -- py3-windows-10-1903:        ----------
+I, [2020-01-29T14:31:44.469561 #4377]  INFO -- py3-windows-10-1903:        ret:
+I, [2020-01-29T14:31:44.470029 #4377]  INFO -- py3-windows-10-1903:            True
+I, [2020-01-29T14:31:44.470457 #4377]  INFO -- py3-windows-10-1903: 
+I, [2020-01-29T14:31:44.470892 #4377]  INFO -- py3-windows-10-1903: Summary for local
+I, [2020-01-29T14:31:44.471354 #4377]  INFO -- py3-windows-10-1903: ------------
+I, [2020-01-29T14:31:44.471794 #4377]  INFO -- py3-windows-10-1903: Succeeded: 1 (changed=1)
+I, [2020-01-29T14:31:44.472226 #4377]  INFO -- py3-windows-10-1903: Failed:    0
+I, [2020-01-29T14:31:44.472666 #4377]  INFO -- py3-windows-10-1903: ------------
+I, [2020-01-29T14:31:44.473097 #4377]  INFO -- py3-windows-10-1903: Total states run:     1
+I, [2020-01-29T14:31:44.473636 #4377]  INFO -- py3-windows-10-1903: Total run time:  79.548 ms
+I, [2020-01-29T14:31:44.495577 #4377]  INFO -- py3-windows-10-1903: Downloading files from <py3-windows-10-1903>
+I, [2020-01-29T14:31:44.527304 #4377]  INFO -- py3-windows-10-1903: Finished converging <py3-windows-10-1903> (0m21.93s).

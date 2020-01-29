@@ -3,8 +3,8 @@ os: windows
 language: bash
 services: docker
 
-install:
-  - choco install vim
+# install:
+#   - choco install vim
 
 script:
   - export KITCHEN_YAML=.kitchen.docker.yml

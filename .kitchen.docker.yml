@@ -3,9 +3,35 @@ driver:
   name: docker
   env_variables:
     TEST_KEY: TEST_VALUE
-    
+
+provisioner:
+  name: salt_solo
+  formula: windows-formula
+  dependencies:
+    - name: windows-formula
+      path: ./test/windows-formula
+
 platforms:
-  - name: windows
-    driver_config:
-      image: mcr.microsoft.com/windows/servercore:1803
-      platform: windows
+- name: windows
+  driver_config:
+    image: mcr.microsoft.com/windows/servercore:1803
+    platform: windows
+
+transport:
+  name: docker
+  env_variables:
+    TEST_KEY: TEST_VALUE
+
+verifier:
+  name: inspec
+  windows: true
+  run_destructive: true
+  reporter:
+    - cli
+  inspec_tests:
+    - path: test/integration/default
+
+suites:
+  - name: py3
+    provisioner:
+      salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 3"

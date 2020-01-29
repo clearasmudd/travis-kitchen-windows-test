@@ -1,13 +1,26 @@
 ---
 driver:
   name: vagrant
+  gui: true
 
 provisioner:
   name: salt_solo
-  formula: filebeat-formula
-  dependencies:
-      - name: windows
-        path: ./test/windows-formula
+  salt_install: bootstrap
+  formula: windows
+  require_chef: false
+  init_environment: |
+    Clear-Host
+    # write-host "RUNNING ME NOW"
+    # if ( Test-Path -Path $env:TEMP\..\kitchen\ -PathType Container ) { Remove-Item "$env:TEMP\..\kitchen\" -Recurse -Force }
+    $AddedLocation ="c:\salt"
+    $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
+    $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
+    $NewPath= $OldPath + ’;’ + $AddedLocation
+    Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
+  state_top:
+    base:
+      '*':
+        - windows
 
 platforms:
   # Windows 10, version 1903 (OS Build: 18362.592)
@@ -15,6 +28,15 @@ platforms:
     driver:
       box: StefanScherer/windows_10
       box_version: 2020.01.15
+
+verifier:
+  name: inspec
+  windows: true
+  run_destructive: true
+  reporter:
+    - cli
+  inspec_tests:
+    - path: test/integration/default
 
 suites:
   - name: py3
