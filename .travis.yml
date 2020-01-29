@@ -11,7 +11,7 @@ script:
   - ruby -v
   - gem install bundler
   - bundle install
-  - bundle exec docker version
+  # - bundle exec docker version
   - bundle exec kitchen --version
   # - bundle exec rake spec
   - bundle exec kitchen test -d always
