@@ -4,7 +4,7 @@ version: 1.0.{build}
 environment:
   machine_user: vagrant
   machine_pass: vagrant
-  KITCHEN_LOCAL_YAML: kitchen.appveyor.yml
+  KITCHEN_LOCAL_YAML: .kitchen.appveyor.yml
   CHEF_LICENSE: accept
 
 branches:
