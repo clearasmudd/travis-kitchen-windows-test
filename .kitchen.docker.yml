@@ -1,54 +1,16 @@
 ---
-# driver:
-#   name: docker
-#   env_variables:
-#     TEST_KEY: TEST_VALUE
-# ---
 driver:
-  name: proxy
-  host: localhost
-  reset_command: "echo hello"
+  name: docker
+  env_variables:
+    TEST_KEY: TEST_VALUE
 
-provisioner:
-  name: salt_solo
-  salt_install: bootstrap
-  formula: windows
-  require_chef: false
-  init_environment: |
-    Clear-Host
-    # write-host "RUNNING ME NOW"
-    # if ( Test-Path -Path $env:TEMP\..\kitchen\ -PathType Container ) { Remove-Item "$env:TEMP\..\kitchen\" -Recurse -Force }
-    $AddedLocation ="c:\salt"
-    $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
-    $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-    $NewPath= $OldPath + ’;’ + $AddedLocation
-    Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
-  state_top:
-    base:
-      '*':
-        - windows
+platforms:
+- name: windows
+  driver_config:
+    image: mcr.microsoft.com/windows/servercore:1803
+    platform: windows
 
-# platforms:
-# - name: windows
-#   driver_config:
-#     image: mcr.microsoft.com/windows/servercore:1803
-#     platform: windows
-
-# transport:
-#   name: docker
-#   env_variables:
-#     TEST_KEY: TEST_VALUE
-
-verifier:
-  name: inspec
-  windows: true
-  run_destructive: true
-  reporter:
-    - cli
-  inspec_tests:
-    - path: test/integration/default
-
-suites:
-  - name: py3
-    provisioner:
-      salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 3"
+transport:
+  name: docker
+  env_variables:
+    TEST_KEY: TEST_VALUE
