@@ -31,16 +31,16 @@ branches:
 # install:
 #   - choco install vim
 install:
-  - powershell -NoProfile -NoLogo -NonInteractive -Command \$PSVersionTable
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'secedit /export /cfg $env:temp/export.cfg'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command '((get-content $env:temp/export.cfg) -replace ("PasswordComplexity = 1", "PasswordComplexity = 0")) | Out-File $env:temp/export.cfg'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command '((get-content $env:temp/export.cfg) -replace ("MinimumPasswordLength = 8", "MinimumPasswordLength = 0")) | Out-File $env:temp/export.cfg'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'net user /add $env:machine_user $env:machine_pass'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'net localgroup administrators $env:machine_user /add'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command '(& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
-  - c:\opscode\chefdk\bin\chef.bat exec ruby --version
+  - pwsh -c \$PSVersionTable
+  - pwsh -c 'secedit /export /cfg $env:temp/export.cfg'
+  - pwsh -c '((get-content $env:temp/export.cfg) -replace ("PasswordComplexity = 1", "PasswordComplexity = 0")) | Out-File $env:temp/export.cfg'
+  - pwsh -c '((get-content $env:temp/export.cfg) -replace ("MinimumPasswordLength = 8", "MinimumPasswordLength = 0")) | Out-File $env:temp/export.cfg'
+  - pwsh -c 'secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY'
+  - pwsh -c 'net user /add $env:machine_user $env:machine_pass'
+  - pwsh -c 'net localgroup administrators $env:machine_user /add'
+  - pwsh -c '(& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current'
+  - pwsh -c 'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
+  - pwsh -c 'c:\opscode\chefdk\bin\chef.bat exec ruby --version'
 
 
 # before_install:
@@ -78,7 +78,7 @@ install:
 #     - /C/tools/msys64
 
 script:
-  - ruby -v
+  # - ruby -v
   # # - gem install bundler
   # - bundle install
   # # - bundle exec docker version
@@ -86,7 +86,7 @@ script:
   # # - bundle exec rake spec
   # - bundle exec kitchen list
   # - bundle exec kitchen test
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version'
+  - pwsh -c 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version'
   - c:\opscode\chefdk\bin\chef.bat exec bundle install
   - c:\opscode\chefdk\bin\chef.bat exec kitchen verify
     # - bundle exec kitchen test -d always
