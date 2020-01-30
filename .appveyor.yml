@@ -16,8 +16,11 @@ branches:
 # Do not build on tags (GitHub only)
 skip_tags: true
 
-skip_commits:
-  message: /\[skipappveyor\]/   
+# skip_commits:
+#   message: /\[skipappveyor\]/   
+
+only_commits:
+  message: /\[build\]/
 
 #faster cloning
 # clone_depth: 1
