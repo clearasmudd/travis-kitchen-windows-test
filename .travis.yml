@@ -31,15 +31,15 @@ branches:
 # install:
 #   - choco install vim
 install:
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command secedit /export /cfg \$env:temp/export.cfg
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command ((get-content \$env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File \$env:temp/export.cfg
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command ((get-content \$env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File \$env:temp/export.cfg
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command secedit /configure /db \$env:windir/security/new.sdb /cfg \$env:temp/export.cfg /areas SECURITYPOLICY
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command net user /add \$env:machine_user \$env:machine_pass
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command net localgroup administrators \$env:machine_user /add
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version
-  - pwsh -NoProfile -NoLogo -NonInteractive -Command \$PSVersionTable
+  - powershell -NoProfile -NoLogo -NonInteractive -Command \$PSVersionTable
+  - powershell -NoProfile -NoLogo -NonInteractive -Command secedit /export /cfg \$env:temp/export.cfg
+  - powershell -NoProfile -NoLogo -NonInteractive -Command ((get-content \$env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File \$env:temp/export.cfg
+  - powershell -NoProfile -NoLogo -NonInteractive -Command ((get-content \$env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File \$env:temp/export.cfg
+  - powershell -NoProfile -NoLogo -NonInteractive -Command secedit /configure /db \$env:windir/security/new.sdb /cfg \$env:temp/export.cfg /areas SECURITYPOLICY
+  - powershell -NoProfile -NoLogo -NonInteractive -Command net user /add \$env:machine_user \$env:machine_pass
+  - powershell -NoProfile -NoLogo -NonInteractive -Command net localgroup administrators \$env:machine_user /add
+  - powershell -NoProfile -NoLogo -NonInteractive -Command (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current
+  - powershell -NoProfile -NoLogo -NonInteractive -Command Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version
   - c:\opscode\chefdk\bin\chef.bat exec ruby --version
 
 
