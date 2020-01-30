@@ -4,11 +4,10 @@
 travis-kitchen-windows-test
 ###########################
 
-========== ================
- Travis CI  |img_travis| 
-========== ================
- Appveyor   |img_appveyor|
-========== ================
+========== ===============
+Travis CI  |img_travis| 
+Appveyor   |img_appveyor|
+========== ===============
 
 .. |img_appveyor| image:: https://ci.appveyor.com/api/projects/status/7fx85jy8v51ha9i4?svg=true
    :alt: Appveyor CI Build Status

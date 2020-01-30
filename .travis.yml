@@ -3,10 +3,7 @@
 # [skip travis]
 os: windows
 language: shell
-# rvm:
-#  - 2.6.5
 
-# services: docker
 sudo: true
 env:
   global:
@@ -14,14 +11,14 @@ env:
     - machine_pass=vagrant
     - machine_port=22
     # - KITCHEN_YAML=.kitchen.travis.yml
-    - KITCHEN_LOCAL_YAML=.kitchen.proxy.yml
+    - KITCHEN_LOCAL_YAML=.kitchen.travis.yml
     - CHEF_LICENSE=accept
 
-# # blocklist
-# branches:
-#   except:
-#   - legacy
-#   - experimental
+# blocklist
+branches:
+  except:
+  - legacy
+  - experimental
 
 # safelist
 branches:
@@ -29,10 +26,7 @@ branches:
   - master
   - stable
 
-# install:
-#   - choco install vim
 install:
-  # - powershell -Command 'gwmi -Query "select OPeratingSystemSKU,Version,ProductType from Win32_OperatingSystem"'
   - powershell -Command \$PSVersionTable
   - powershell -Command 'secedit /export /cfg $env:temp/export.cfg'
   - powershell -Command '((get-content $env:temp/export.cfg) -replace ("PasswordComplexity = 1", "PasswordComplexity = 0")) | Out-File $env:temp/export.cfg'
@@ -44,7 +38,7 @@ install:
   - powershell -Command 'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
   - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec ruby --version'
 
-
+### If MSYS2 is needed ###
 # before_install:
 # - |-
 #     case $TRAVIS_OS_NAME in
@@ -64,7 +58,6 @@ install:
 #         export MAKE=mingw32-make  # so that Autotools can find it
 #         ;;
 #     esac
-
 # before_cache:
 # - |-
 #     case $TRAVIS_OS_NAME in
@@ -73,39 +66,19 @@ install:
 #         $msys2 pacman --sync --clean --noconfirm
 #         ;;
 #     esac
-
 # cache:
 #     directories:
 #     - $HOME/AppData/Local/Temp/chocolatey
 #     - /C/tools/msys64
+###
 
 script:
   - ruby -v
-  # # - gem install bundler
-  # - bundle install
-  # # - bundle exec docker version
-  # - bundle exec kitchen --version
-  # # - bundle exec rake spec
-  # - bundle exec kitchen list
-  # - bundle exec kitchen test
   - powershell -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex'
   - powershell -Command 'c:\opscode\chefdk\bin\chef.bat --version'
   - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec bundle install'
   - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen list'
-  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen test'
-    # - bundle exec kitchen test -d always
-
-# script:
-  # # - taskkill -IM "gpg-agent.exe" -F
-  # # - powershell -ExecutionPolicy Bypass -NoLogo -File docker.ps1
-  # - export KITCHEN_YAML=.kitchen.docker.yml
-  # - ruby -v
-  # - gem install bundler
-  # - bundle install
-  # - bundle exec docker version
-  # - bundle exec kitchen --version
-  # - bundle exec rake spec
-  # - bundle exec kitchen test -d always
+  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen test -d always'
 
 # script:
 #   - docker version

@@ -1,33 +1,111 @@
 ---
 driver:
   name: vagrant
+  linked_clone: true
   gui: true
+  vagrantfiles:
+    - test/vagrant-vbguest.rb # stop virtualbox guest additions update
+  provider: virtualbox
+  customize:
+    memory: 2048
+    cpus: 2
+  ### Hyper V ###
+  # provider: hyperv
+  # network:
+  # - ['private_network', bridge: 'Default Switch']
+  ### The following three lines should be used if you need to reboot during a test kitchen converge ###
+  # max_retries: 4
+  # wait_for_retry: 30
+  # retry_on_exit_code: [35, 1]
+  ###
+  salt_file_root: /srv/salt
+  pillars_from_directories:
+  - source: test/salt/pillar/
+    dest: srv/pillar/
 
 provisioner:
   name: salt_solo
   salt_install: bootstrap
   formula: windows
   require_chef: false
-  # init_environment: |
-  #   Clear-Host
-  #   # write-host "RUNNING ME NOW"
-  #   # if ( Test-Path -Path $env:TEMP\..\kitchen\ -PathType Container ) { Remove-Item "$env:TEMP\..\kitchen\" -Recurse -Force }
-  #   $AddedLocation ="c:\salt"
-  #   $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
-  #   $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-  #   $NewPath= $OldPath + ’;’ + $AddedLocation
-  #   Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
   state_top:
     base:
       '*':
         - windows
-
+  pillars:
+    top.sls:
+      base:
+        '*':
+          - windows
+  salt_copy_filter:
+    - .kitchen
+    - .git
+    - __pycache__
+    - '*.pyc'
+    - .bundle
+    - .tox
+    - .nox
+    - artifacts
+    - Gemfile.lock
+  salt_minion_extra_config:
+    use_superseded:
+    - module.run
+    
 platforms:
   # Windows 10, version 1903 (OS Build: 18362.592)
   - name: windows-10-1903
     driver:
       box: StefanScherer/windows_10
       box_version: 2020.01.15
+
+  # Windows 10, version 1809 (OS Build: 17763.503)
+  - name: windows-10-1809
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2019.05.15
+
+  # Windows 10, version 1803 (OS Build: 17134.285)
+  - name: windows-10-1803
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2018.09.12
+
+  # Windows 10, version 1709 (OS Build: 16299.309)
+  - name: windows-10-1709
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2018.03.14
+
+  # # Windows Server 2019, version 1809 (OS Build: 17763.864)
+  # - name: windows-server-2019-1809old
+  #   driver:
+  #     box: StefanScherer/windows_2019
+  #     box_version: 2019.11.15
+  
+  # Windows Server 2019, version 1809 (OS Build: 17763.864)
+  - name: windows-server-2019-1809
+    driver:
+      box: StefanScherer/windows_2019
+      box_version: 2020.01.15
+      gui: false
+
+  # # windows server 1803 (OS Build: 17763.864)
+  # - name: windows-server-2019-1803
+  #   driver:
+  #     box: StefanScherer/windows_2019
+  #     box_version: 2018.10.03
+
+  # Windows Server 2016, version 1607 (OS Build: 14393.2791)
+  - name: windows-server-2016
+    driver:
+      box: StefanScherer/windows_2016
+      box_version: 2019.02.14
+
+  # Windows Server 2012 R2 (OS Build: 9600)
+  - name: windows-server-2012r2
+    driver:
+      box: mwrock/Windows2012R2
+      box_version: 0.6.1
 
 verifier:
   name: inspec
