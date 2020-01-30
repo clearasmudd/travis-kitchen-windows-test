@@ -4,9 +4,11 @@
 travis-kitchen-windows-test
 ###########################
 
-|img_appveyor|
-
-|img_travis|
+    ========== ===============
+     Travis CI |img_travis| 
+    ========== ===============
+     Appveyor  |img_appveyor|
+    ========== ===============
 
 .. |img_appveyor| image:: https://ci.appveyor.com/api/projects/status/7fx85jy8v51ha9i4?svg=true
    :alt: Appveyor CI Build Status
@@ -16,3 +18,5 @@ travis-kitchen-windows-test
    :alt: Travis CI Build Status
    :scale: 100%
    :target: https://travis-ci.com/clearasmudd/travis-kitchen-windows-test
+
+This repo has a few examples of doing ci with saltstack using test kitchen.
