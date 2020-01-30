@@ -13,21 +13,26 @@ driver:
   # provider: hyperv
   # network:
   # - ['private_network', bridge: 'Default Switch']
-  ### The following three lines should be used if you need to reboot during a test kitchen converge ###
-  # max_retries: 4
-  # wait_for_retry: 30
-  # retry_on_exit_code: [35, 1]
-  ###
-  salt_file_root: /srv/salt
-  pillars_from_directories:
-  - source: test/salt/pillar/
-    dest: srv/pillar/
+
 
 provisioner:
   name: salt_solo
   salt_install: bootstrap
   formula: windows
   require_chef: false
+  ### The following three lines should be used if you need to reboot during a test kitchen converge ###
+  # max_retries: 4
+  # wait_for_retry: 30
+  # retry_on_exit_code: [35, 1]
+  ###
+  install_after_init_environment: false
+  is_file_root: false
+  require_chef: false
+  formula: windows
+  salt_file_root: /srv/salt
+  pillars_from_directories:
+  - source: test/salt/pillar/
+    dest: srv/pillar/
   state_top:
     base:
       '*':
