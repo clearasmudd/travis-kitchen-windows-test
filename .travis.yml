@@ -90,7 +90,8 @@ script:
   - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex'
   - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat --version'
   - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat exec bundle install'
-  - c:\opscode\chefdk\bin\chef.bat exec kitchen verify
+  - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen list'
+  - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen test'
     # - bundle exec kitchen test -d always
 
 # script:
