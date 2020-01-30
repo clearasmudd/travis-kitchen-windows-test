@@ -31,7 +31,7 @@ branches:
 # install:
 #   - choco install vim
 install:
-  - pwsh -c \$PSVersionTable
+  - pwsh -c '$PSVersionTable'
   - pwsh -c 'secedit /export /cfg $env:temp/export.cfg'
   - pwsh -c '((get-content $env:temp/export.cfg) -replace ("PasswordComplexity = 1", "PasswordComplexity = 0")) | Out-File $env:temp/export.cfg'
   - pwsh -c '((get-content $env:temp/export.cfg) -replace ("MinimumPasswordLength = 8", "MinimumPasswordLength = 0")) | Out-File $env:temp/export.cfg'
