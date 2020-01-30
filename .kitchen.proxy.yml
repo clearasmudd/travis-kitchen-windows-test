@@ -3,7 +3,13 @@ driver:
   name: proxy
   host: localhost
   reset_command: "exit 0"
-  # reset_command: "echo hello"
-  port: <%= ENV["machine_port"] %>
+  port: 5985
   username: <%= ENV["machine_user"] %>
   password: <%= ENV["machine_pass"] %>
+
+transport:
+  name: winrm
+  elevated: true
+
+platforms:
+  - name: windows-2019

@@ -8,8 +8,8 @@ services: docker
 sudo: true
 env:
   global:
-    - machine_user=travis
-    - machine_pass=travis
+    - machine_user=vagrant
+    - machine_pass=vagrant
     - machine_port=22
     # - KITCHEN_YAML=.kitchen.travis.yml
     - KITCHEN_LOCAL_YAML=.kitchen.proxy.yml
@@ -28,49 +28,63 @@ branches:
 
 # install:
 #   - choco install vim
-before_install:
-- |-
-    case $TRAVIS_OS_NAME in
-      windows)
-        [[ ! -f C:/tools/msys64/msys2_shell.cmd ]] && rm -rf C:/tools/msys64
-        choco uninstall -y mingw
-        choco upgrade --no-progress -y msys2
-        export msys2='cmd //C RefreshEnv.cmd '
-        export msys2+='& set MSYS=winsymlinks:nativestrict '
-        export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
-        export mingw64="$msys2 -mingw64 -full-path -here -c "\"\$@"\" --"
-        export msys2+=" -msys2 -c "\"\$@"\" --"
-        $msys2 pacman --sync --noconfirm --needed mingw-w64-x86_64-toolchain
-        ## Install more MSYS2 packages from https://packages.msys2.org/base here
-        taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
-        export PATH=/C/tools/msys64/mingw64/bin:$PATH
-        export MAKE=mingw32-make  # so that Autotools can find it
-        ;;
-    esac
+install:
+  - (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current
+  - 'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
+  - $PSVersionTable
+  - c:\opscode\chefdk\bin\chef.bat exec ruby --version
+  - secedit /export /cfg $env:temp/export.cfg
+  - ((get-content $env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File $env:temp/export.cfg
+  - ((get-content $env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File $env:temp/export.cfg
+  - secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
+  - net user /add $env:machine_user $env:machine_pass
+  - net localgroup administrators $env:machine_user /add
 
-before_cache:
-- |-
-    case $TRAVIS_OS_NAME in
-      windows)
-        # https://unix.stackexchange.com/a/137322/107554
-        $msys2 pacman --sync --clean --noconfirm
-        ;;
-    esac
+# before_install:
+# - |-
+#     case $TRAVIS_OS_NAME in
+#       windows)
+#         [[ ! -f C:/tools/msys64/msys2_shell.cmd ]] && rm -rf C:/tools/msys64
+#         choco uninstall -y mingw
+#         choco upgrade --no-progress -y msys2
+#         export msys2='cmd //C RefreshEnv.cmd '
+#         export msys2+='& set MSYS=winsymlinks:nativestrict '
+#         export msys2+='& C:\\tools\\msys64\\msys2_shell.cmd -defterm -no-start'
+#         export mingw64="$msys2 -mingw64 -full-path -here -c "\"\$@"\" --"
+#         export msys2+=" -msys2 -c "\"\$@"\" --"
+#         $msys2 pacman --sync --noconfirm --needed mingw-w64-x86_64-toolchain
+#         ## Install more MSYS2 packages from https://packages.msys2.org/base here
+#         taskkill //IM gpg-agent.exe //F  # https://travis-ci.community/t/4967
+#         export PATH=/C/tools/msys64/mingw64/bin:$PATH
+#         export MAKE=mingw32-make  # so that Autotools can find it
+#         ;;
+#     esac
 
-cache:
-    directories:
-    - $HOME/AppData/Local/Temp/chocolatey
-    - /C/tools/msys64
+# before_cache:
+# - |-
+#     case $TRAVIS_OS_NAME in
+#       windows)
+#         # https://unix.stackexchange.com/a/137322/107554
+#         $msys2 pacman --sync --clean --noconfirm
+#         ;;
+#     esac
+
+# cache:
+#     directories:
+#     - $HOME/AppData/Local/Temp/chocolatey
+#     - /C/tools/msys64
 
 script:
   - ruby -v
-  # - gem install bundler
-  - bundle install
-  # - bundle exec docker version
-  - bundle exec kitchen --version
-  # - bundle exec rake spec
-  - bundle exec kitchen list
-  - bundle exec kitchen test
+  # # - gem install bundler
+  # - bundle install
+  # # - bundle exec docker version
+  # - bundle exec kitchen --version
+  # # - bundle exec rake spec
+  # - bundle exec kitchen list
+  # - bundle exec kitchen test
+  - c:\opscode\chefdk\bin\chef.bat exec bundle install
+  - c:\opscode\chefdk\bin\chef.bat exec kitchen verify
     # - bundle exec kitchen test -d always
 
 # script:
