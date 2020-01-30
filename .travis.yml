@@ -32,7 +32,7 @@ branches:
 #   - choco install vim
 install:
   - powershell -NoProfile -NoLogo -NonInteractive -Command \$PSVersionTable
-  - powershell -NoProfile -NoLogo -NonInteractive -Command secedit /export /cfg \$env:temp/export.cfg
+  - powershell -NoProfile -NoLogo -NonInteractive -Command 'secedit /export /cfg $env:temp/export.cfg'
   - powershell -NoProfile -NoLogo -NonInteractive -Command ((get-content \$env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File \$env:temp/export.cfg
   - powershell -NoProfile -NoLogo -NonInteractive -Command ((get-content \$env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File \$env:temp/export.cfg
   - powershell -NoProfile -NoLogo -NonInteractive -Command secedit /configure /db \$env:windir/security/new.sdb /cfg \$env:temp/export.cfg /areas SECURITYPOLICY
