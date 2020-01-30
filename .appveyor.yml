@@ -1,5 +1,6 @@
 # version format
 # https://github.com/chef-cookbooks/windows/blob/master/appveyor.yml
+# https://www.appveyor.com/docs/appveyor-yml/
 # https://ci.appveyor.com/project/muddman/travis-kitchen-windows-test
 # [skip appveyor]
 version: 1.0.{build}
@@ -46,7 +47,7 @@ matrix:
 # Install the latest nightly of ChefDK
 install:
   - ps: (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current
-  - ps: Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version
+  - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
   - ps: $PSVersionTable
   - c:\opscode\chefdk\bin\chef.bat exec ruby --version
   - ps: secedit /export /cfg $env:temp/export.cfg

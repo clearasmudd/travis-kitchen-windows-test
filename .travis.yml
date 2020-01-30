@@ -25,6 +25,7 @@ branches:
   - stable
 
 install:
+  - powershell -Command 'gwmi -Query "select OPeratingSystemSKU,Version,ProductType from Win32_OperatingSystem"'
   - powershell -Command 'Get-CimInstance Win32_OperatingSystem | Format-List *'
   - powershell -Command \$PSVersionTable
   - powershell -Command 'secedit /export /cfg $env:temp/export.cfg'
