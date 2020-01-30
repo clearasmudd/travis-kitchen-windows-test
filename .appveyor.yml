@@ -1,5 +1,6 @@
 # version format
 # https://github.com/chef-cookbooks/windows/blob/master/appveyor.yml
+# https://ci.appveyor.com/project/muddman/travis-kitchen-windows-test
 version: 1.0.{build}
 
 environment:
@@ -28,7 +29,7 @@ image:
 platform: Any CPU
 
 matrix:
-  fast_finish: allow_failures     # set this flag to immediately finish build once one of the jobs fails.
+  fast_finish: false     # set this flag to immediately finish build once one of the jobs fails.
   allow_failures:
     - platform: x86
       configuration: Debug
