@@ -10,8 +10,7 @@ travis-kitchen-windows-test
    :alt: Appveyor CI Build Status
    :scale: 100%
    :target: https://ci.appveyor.com/project/muddman/travis-kitchen-windows-test
-.. |img_travis| image:: https://travis-ci.com/clearasmudd/travis-kitchen-windows-test.svg
+.. |img_travis| image:: https://travis-ci.com/clearasmudd/travis-kitchen-windows-test.svg?branch=master
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/clearasmudd/travis-kitchen-windows-test/
-
+   :target: https://travis-ci.com/clearasmudd/travis-kitchen-windows-test

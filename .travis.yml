@@ -1,5 +1,6 @@
 
 # https://travis-ci.com/clearasmudd/travis-kitchen-windows-test/builds/146767412
+# [skip travis]
 os: windows
 language: shell
 # rvm:
@@ -89,7 +90,7 @@ script:
   - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex'
   - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat --version'
   - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat exec bundle install'
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen verify'
+  - c:\opscode\chefdk\bin\chef.bat exec kitchen verify
     # - bundle exec kitchen test -d always
 
 # script:

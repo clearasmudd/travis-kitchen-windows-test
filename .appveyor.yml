@@ -1,6 +1,7 @@
 # version format
 # https://github.com/chef-cookbooks/windows/blob/master/appveyor.yml
 # https://ci.appveyor.com/project/muddman/travis-kitchen-windows-test
+# [skip appveyor]
 version: 1.0.{build}
 
 environment:
