@@ -17,7 +17,7 @@ branches:
 skip_tags: true
 
 skip_commits:
-  message: /\[skiptravis\]/   
+  message: /\[skipappveyor\]/   
 
 #faster cloning
 # clone_depth: 1
