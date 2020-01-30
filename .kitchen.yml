@@ -2,7 +2,7 @@
 driver:
   name: vagrant
   linked_clone: true
-  gui: true
+  gui: false
   vagrantfiles:
     - test/vagrant-vbguest.rb # stop virtualbox guest additions update
   provider: virtualbox

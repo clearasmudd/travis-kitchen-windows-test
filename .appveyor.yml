@@ -20,18 +20,18 @@ skip_tags: true
 # skip_commits:
 #   message: /\[skipappveyor\]/   
 
-only_commits:
-  message: /\[build\]/
+# only_commits:
+#   message: /\[build\]/
 
 #faster cloning
 # clone_depth: 1
 
 image:
-  # - Visual Studio 2019 Preview
+  - Visual Studio 2019 Preview
   - Visual Studio 2019
-  # - Visual Studio 2017
-  # - Visual Studio 2015
-  # - Visual Studio 2013
+  - Visual Studio 2017
+  - Visual Studio 2015
+  - Visual Studio 2013
 
 platform: Any CPU
 

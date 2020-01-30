@@ -4,7 +4,6 @@
 os: windows
 language: shell
 
-sudo: true
 env:
   global:
     - machine_user=vagrant
