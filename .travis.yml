@@ -31,12 +31,12 @@ branches:
 # install:
 #   - choco install vim
 install:
-  - PowerShell -Command secedit /export /cfg $env:temp/export.cfg
-  - PowerShell -Command ((get-content $env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File $env:temp/export.cfg
-  - PowerShell -Command ((get-content $env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File $env:temp/export.cfg\
-  - PowerShell -Command secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
-  - PowerShell -Command "net user /add $env:machine_user $env:machine_pass"
-  - PowerShell -Command "net localgroup administrators $env:machine_user /add"
+  - PowerShell -Command secedit /export /cfg \$env:temp/export.cfg
+  - PowerShell -Command ((get-content \$env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File $env:temp/export.cfg
+  - PowerShell -Command ((get-content \$env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File $env:temp/export.cfg\
+  - PowerShell -Command secedit /configure /db $env:windir/security/new.sdb /cfg \$env:temp/export.cfg /areas SECURITYPOLICY
+  - PowerShell -Command net user /add \$env:machine_user \$env:machine_pass
+  - PowerShell -Command net localgroup administrators $env:machine_user /add
   - PowerShell -Command '(& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current'
   - PowerShell -Command 'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
   - PowerShell -Command '$PSVersionTable'
