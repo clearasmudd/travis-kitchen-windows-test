@@ -22,9 +22,9 @@ clone_depth: 1
 image:
   # - Visual Studio 2019 Preview
   - Visual Studio 2019
-  - Visual Studio 2017
-  - Visual Studio 2015
-  - Visual Studio 2013
+  # - Visual Studio 2017
+  # - Visual Studio 2015
+  # - Visual Studio 2013
 
 platform: Any CPU
 
@@ -39,7 +39,7 @@ matrix:
 # Install the latest nightly of ChefDK
 install:
   - ps: (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current
-  - ps: 'Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version'
+  - ps: Get-CimInstance win32_operatingsystem -Property Caption, OSArchitecture, Version | fl Caption, OSArchitecture, Version
   - ps: $PSVersionTable
   - c:\opscode\chefdk\bin\chef.bat exec ruby --version
   - ps: secedit /export /cfg $env:temp/export.cfg
