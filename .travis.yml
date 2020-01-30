@@ -32,7 +32,7 @@ branches:
 # install:
 #   - choco install vim
 install:
-  - powershell -Command 'gwmi -Query "select OPeratingSystemSKU,Version,ProductType from Win32_OperatingSystem"'
+  # - powershell -Command 'gwmi -Query "select OPeratingSystemSKU,Version,ProductType from Win32_OperatingSystem"'
   - powershell -Command \$PSVersionTable
   - powershell -Command 'secedit /export /cfg $env:temp/export.cfg'
   - powershell -Command '((get-content $env:temp/export.cfg) -replace ("PasswordComplexity = 1", "PasswordComplexity = 0")) | Out-File $env:temp/export.cfg'
