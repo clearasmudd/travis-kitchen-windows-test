@@ -86,9 +86,10 @@ script:
   # # - bundle exec rake spec
   # - bundle exec kitchen list
   # - bundle exec kitchen test
-  - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version'
-  - c:\opscode\chefdk\bin\chef.bat exec bundle install
-  - c:\opscode\chefdk\bin\chef.bat exec kitchen verify
+  - powershell -NoProfile -NoLogo -NonInteractive -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex'
+  - 'c:\opscode\chefdk\bin\chef.bat --version'
+  - 'c:\opscode\chefdk\bin\chef.bat exec bundle install'
+  - 'c:\opscode\chefdk\bin\chef.bat exec kitchen verify'
     # - bundle exec kitchen test -d always
 
 # script:
