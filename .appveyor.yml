@@ -20,8 +20,8 @@ skip_tags: true
 # skip_commits:
 #   message: /\[skipappveyor\]/   
 
-# only_commits:
-#   message: /\[build\]/
+only_commits:
+  message: /\[build\]/
 
 #faster cloning
 # clone_depth: 1

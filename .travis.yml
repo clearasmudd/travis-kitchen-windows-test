@@ -9,7 +9,6 @@ env:
     - machine_user=vagrant
     - machine_pass=vagrant
     - machine_port=22
-    # - KITCHEN_YAML=.kitchen.travis.yml
     - KITCHEN_LOCAL_YAML=.kitchen.travis.yml
     - CHEF_LICENSE=accept
 
@@ -26,6 +25,7 @@ branches:
   - stable
 
 install:
+  - powershell -Command 'gwmi -Query "select OPeratingSystemSKU,Version,ProductType from Win32_OperatingSystem"'
   - powershell -Command \$PSVersionTable
   - powershell -Command 'secedit /export /cfg $env:temp/export.cfg'
   - powershell -Command '((get-content $env:temp/export.cfg) -replace ("PasswordComplexity = 1", "PasswordComplexity = 0")) | Out-File $env:temp/export.cfg'
@@ -71,17 +71,17 @@ install:
 #     - /C/tools/msys64
 ###
 
-script:
-  - ruby -v
-  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex'
-  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat --version'
-  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec bundle install'
-  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen list'
-  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen test -d always'
-
 # script:
 #   - docker version
 #   - docker images
 #   - docker info
 #   # - docker run mcr.microsoft.com/windows/nanoserver:1803 ipconfig
 #   - docker run mcr.microsoft.com/windows/servercore:1803 ipconfig
+
+script:
+  - ruby -v
+  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex'
+  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat --version'
+  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec bundle install'
+  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen list'
+  - powershell -Command 'c:\opscode\chefdk\bin\chef.bat exec kitchen test'
