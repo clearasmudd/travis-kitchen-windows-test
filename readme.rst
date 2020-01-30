@@ -19,3 +19,5 @@ Appveyor   |img_appveyor|
    :target: https://travis-ci.com/clearasmudd/travis-kitchen-windows-test
 
 This repo has a few examples of doing Chef `test kitchen <https://docs.chef.io/kitchen.html>`_ testing with saltstack.
+
+* Travis CI builds are currently failing due to: https://github.com/saltstack/salt/issues/54258.
