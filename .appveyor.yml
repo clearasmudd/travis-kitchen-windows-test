@@ -16,8 +16,11 @@ branches:
 # Do not build on tags (GitHub only)
 skip_tags: true
 
+skip_commits:
+  message: /\[skiptravis\]/   
+
 #faster cloning
-clone_depth: 1
+# clone_depth: 1
 
 image:
   # - Visual Studio 2019 Preview
